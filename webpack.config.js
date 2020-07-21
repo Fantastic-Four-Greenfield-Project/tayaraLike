@@ -12,8 +12,13 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
+
   output: {
     filename: "bundle.js",
     path: __dirname + "/client/dist",
