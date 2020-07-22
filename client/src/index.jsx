@@ -15,8 +15,8 @@ class Home extends React.Component {
         {/* <SignUp />
         <SignIn /> */}
         {/* <GuestSearchBar /> */}
-        {/* <AdminInterface /> */}
-        <UserInterface />
+        <AdminInterface />
+        {/* <UserInterface /> */}
       </div>
     );
   }

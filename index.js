@@ -8,7 +8,6 @@ const db = require("./databse.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Items = require('./itemsSchema')
-const UserPosts = require('./userPosts')
 process.env.SECRET_KEY = "secret"
 //set static folder to serve
 app.use(express.json());
@@ -82,13 +81,13 @@ app.post("/signIn", (req, res) => {
 });
 //OMAR YAKOUBI TO CREATE A POST
 app.post("/createUsersPosts", (req, res) => {
-  UserPosts.create(req.body).then((user) => {
+  Items.create(req.body).then((user) => {
     res.send("USER POST CREATED");
   });
 });
 // OMAR YAKOUBI GET POSTS
 app.get("/getAllPosts", (req, res) => {
-  UserPosts.find({}, (err, result) => {
+  Items.find({}, (err, result) => {
     if (err) {
       res.send(err);
     } else {
@@ -98,7 +97,7 @@ app.get("/getAllPosts", (req, res) => {
 });
 ////YAKOUBI OMAR DELETE POSTS
 app.delete("/deletePost/:id", (req, res) => {
-  UserPosts.findByIdAndRemove({ _id: req.params.id }, (err, result) => {
+  Items.findByIdAndRemove({ _id: req.params.id }, (err, result) => {
     if (err) {
       console.log("error");
       res.send(err);
