@@ -16,10 +16,9 @@ class Home extends React.Component {
         <SignIn /> */}
         {/* <GuestSearchBar /> */}
         {/* <AdminInterface /> */}
-        {/* <UserInterface /> */}
+        <UserInterface />
       </div>
     );
   }
 }
-
 ReactDOM.render(<Home />, document.getElementById("app"));

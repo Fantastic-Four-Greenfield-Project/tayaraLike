@@ -15,11 +15,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("client/dist"));
 //TEST
-// app.post("/", (req, res) => {
-//   Items.create(req.body).then(item => {
-//     res.send("item add")
-//   })
-// })
+app.post("/", (req, res) => {
+  Items.create(req.body).then(item => {
+    res.send("item add")
+  })
+})
 //// MIMOUNI YOSRI GET ALL THE ITEMS FROM THE DATA BASE TO THE GUESTSEARCH COMPONENT
 app.get('/post', (req, res) => {
   Items.find({}, (err, docs) => {

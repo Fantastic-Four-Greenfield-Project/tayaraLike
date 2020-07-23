@@ -2,6 +2,7 @@ import React from "react";
 import AdminUserList from "./AdminUserList.jsx";
 import axios from "axios";
 import UserPostList from "./UserPostList.jsx";
+import User from "../../../userSchema.js";
 
 class AdminNavbar extends React.Component {
   constructor(props) {
@@ -9,20 +10,20 @@ class AdminNavbar extends React.Component {
     this.state = { userList: [] };
   }
 
-  retriveAllData() {
-    console.log("you clicked");
-    axios
-      .get("/retriveAllTheUsers")
-      .then((resonse) => {
-        const data = resonse.data;
-        console.log("Get the data succefully.", data);
-        this.setState({ userList: data });
-        console.log("state inside fetch", this.state);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  // retriveAllData() {
+  //   console.log("you clicked");
+  //   axios
+  //     .get("/retriveAllTheUsers")
+  //     .then((resonse) => {
+  //       const data = resonse.data;
+  //       console.log("Get the data succefully.", data);
+  //       this.setState({ userList: data });
+  //       console.log("state inside fetch", this.state);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
   retriveUserPosts() {
     console.log("you clicked");
@@ -30,26 +31,27 @@ class AdminNavbar extends React.Component {
       .get("/getAllPosts")
       .then((resonse) => {
         const data = resonse.data;
-        console.log("Get the data succefully.", data);
+        // console.log("Get the data succefully.", data);
         this.setState({ userPostsListArray: data });
-        console.log("state inside fetch", this.state);
-        console.log(
-          "State from USERLIST-NAVBAR",
-          this.state.userPostsListArray
-        );
+        console.log(this.state.UserPostList)
+        // console.log("state inside fetch", this.state);
+        // console.log(
+        //   "State from USERLIST-NAVBAR",
+        //   this.state.userPostsListArray
+        // );
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
-  deletePost(e) {
-    axios
-      .delete(`/deletePost/${e.target.id}`)
-      .catch((error) => console.log(error));
+  // deletePost(e) {
+  //   axios
+  //     .delete(`/deletePost/${e.target.id}`)
+  //     .catch((error) => console.log(error));
 
-    location.reload();
-  }
+  //   location.reload();
+  // }
 
   render() {
     return (
@@ -80,7 +82,7 @@ class AdminNavbar extends React.Component {
               <a
                 className="nav-item nav-link"
                 href="#"
-                onClick={this.retriveAllData.bind(this)}
+                // onClick={this.retriveAllData.bind(this)}
               >
                 Users
               </a>
