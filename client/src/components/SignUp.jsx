@@ -32,7 +32,7 @@ class SignUp extends React.Component {
     renderAlert() {
         if (this.state.isSigned === true) {
             // return <h1> {this.state.alertMessage}</h1>
-            return <div class="modal-dialog modal-sm">{this.state.alertMessage}</div>
+            return <span className="modal-dialog modal-sm alertMessage">{this.state.alertMessage}</span>
         } else if (this.state.isSigned === false) {
             return <h1></h1>
         }
@@ -56,7 +56,7 @@ class SignUp extends React.Component {
                         <label htmlFor="exampleInputPassword1">Password</label>
                         <input onChange={this.onChange.bind(this)} name="password" type="password" className="form-control" />
                     </div>
-                    <button type="submit" className="btn btn-primary" onClick={this.handleSignUp.bind(this)}>Sign Up</button>
+                    <button className="btn btn-info btn-lg button" data-toggle="modal" data-target="#myModal" type="submit" onClick={this.handleSignUp.bind(this)}>Sign Up</button>
                     {this.renderAlert()}
                 </div>
             </div>
