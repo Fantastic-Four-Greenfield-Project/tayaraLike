@@ -1,11 +1,16 @@
 import React from "react";
 import axios from "axios";
 import AdminUserList from "./AdminUserList.jsx";
+import UserPostList from "./UserPostList.jsx";
 
 class AdminNavbar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { userList: [] };
+    this.state = {
+      userList: [],
+      userPostsListArray: [],
+      viewCount: 0,
+    };
   }
 
   retriveAllData() {
@@ -15,7 +20,10 @@ class AdminNavbar extends React.Component {
       .then((resonse) => {
         const data = resonse.data;
         console.log("Get the data succefully.", data);
-        this.setState({ userList: data });
+        this.setState({
+          userList: data,
+          viewCount: 1,
+        });
         console.log("state inside fetch", this.state);
       })
       .catch((err) => {
@@ -23,10 +31,34 @@ class AdminNavbar extends React.Component {
       });
   }
 
+  retriveUserPosts() {
+    console.log("you clicked");
+    axios
+      .get("/getAllPosts")
+      .then((resonse) => {
+        const posts = resonse.data;
+        this.setState({
+          userPostsListArray: posts,
+          viewCount: 2,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  deletePost(e) {
+    axios
+      .delete(`/deletePost/${e.target.id}`)
+      .catch((error) => console.log(error));
+
+    location.reload();
+  }
+
   render() {
     return (
       <div className="Navbar">
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar navbar-expand navbar-dark bg-dark">
           <a className="navbar-brand" href="#">
             Admin Interface
           </a>
@@ -43,12 +75,6 @@ class AdminNavbar extends React.Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-              <a className="nav-item nav-link active" href="#">
-                Home <span className="sr-only">(current)</span>
-              </a>
-              <a className="nav-item nav-link" href="#">
-                Features
-              </a>
               <a
                 className="nav-item nav-link"
                 href="#"
@@ -56,10 +82,22 @@ class AdminNavbar extends React.Component {
               >
                 Users
               </a>
+              <a
+                className="nav-item nav-link"
+                href="#"
+                onClick={this.retriveUserPosts.bind(this)}
+              >
+                All Users Posts
+              </a>
             </div>
           </div>
         </nav>
-        <AdminUserList userList={this.state.userList} />
+
+        {this.state.viewCount === 1 ? (
+          <AdminUserList userList={this.state.userList} />
+        ) : this.state.viewCount === 2 ? (
+          <UserPostList userPostsListArray={this.state.userPostsListArray} />
+        ) : null}
       </div>
     );
   }

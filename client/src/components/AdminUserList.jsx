@@ -15,16 +15,15 @@ class UserList extends React.Component {
 
   render() {
     console.log("user list inside userlist component", this.props.userList);
-    return this.props.userList.map((user, index) => {
+    return this.props.userList.map((user) => {
       return (
         <center>
           <div className="Users">
             <div className="row">
               <div className="col-sm-2">
                 <div className="card">
-                  <div className="card-body">
-                    <h5 className="card-text">Account : {user.userType}</h5>
-                    <p className="card-title">User Name:{user.userName}</p>
+                  <div key={user._id} className="card-body">
+                    <p className="card-title">User-Name : {user.userName}</p>
                   </div>
                 </div>
               </div>

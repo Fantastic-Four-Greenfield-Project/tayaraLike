@@ -1,5 +1,5 @@
 import React from "react";
-import CreateUserPosts from "./CreateUserPosts.jsx";
+import UserNavbar from "./UserNavBar.jsx";
 
 class UserInterface extends React.Component {
   constructor(props) {
@@ -7,7 +7,11 @@ class UserInterface extends React.Component {
   }
 
   render() {
-    return <CreateUserPosts />;
+    return (
+      <div>
+        <UserNavbar />
+      </div>
+    );
   }
 }
 
