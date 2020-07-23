@@ -12,10 +12,10 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        {/* <SignUp />
-        <SignIn /> */}
+        {/* <SignUp /> */}
+        {/* <SignIn />  */}
         {/* <GuestSearchBar /> */}
-        <AdminInterface />
+        {/* <AdminInterface /> */}
         {/* <UserInterface /> */}
       </div>
     );

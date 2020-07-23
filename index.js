@@ -103,7 +103,7 @@ app.post("/signIn", (req, res) => {
 // , upload.single('img')
 app.post("/createUsersPosts", (req, res) => {
   Items.create(req.body).then((user) => {
-    res.send("USER POST CREATED");
+    res.send(user);
   });
 });
 
@@ -160,8 +160,6 @@ app.get("/one/:adressMail", (req, res) => {
     res.send(result);
   });
 });
-
-///SAVING THE IMAGE
 
 //INITIATE SEREVR
 const port = process.env.PORT || 3000;
