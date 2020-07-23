@@ -8,18 +8,35 @@ const db = require("./databse.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Items = require('./itemsSchema')
+const fs = require('fs')
+const multer = require('multer')
+const path = require('path')
+require('dotenv/config')
+
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
+const upload = multer({ storage: storage })
+
 process.env.SECRET_KEY = "secret"
 //set static folder to serve
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("client/dist"));
-//TEST
-app.post("/", (req, res) => {
-  Items.create(req.body).then(item => {
-    res.send("item add")
-  })
-})
+app.use('/uploads', express.static("uploads"));
+//TEST CREATE AN ITEM
+// app.post("/", (req, res) => {
+//   Items.create(req.body).then(item => {
+//     res.send("item add")
+//   })
+// })
 //// MIMOUNI YOSRI GET ALL THE ITEMS FROM THE DATA BASE TO THE GUESTSEARCH COMPONENT
 app.get('/post', (req, res) => {
   Items.find({}, (err, docs) => {
@@ -79,12 +96,19 @@ app.post("/signIn", (req, res) => {
       res.send("server error");
     })
 });
-//OMAR YAKOUBI TO CREATE A POST
+
+
+
+//OMAR YAKOUBI TO CREATE A PRODUCT USING ITEM SCHEMA
+// , upload.single('img')
 app.post("/createUsersPosts", (req, res) => {
   Items.create(req.body).then((user) => {
     res.send("USER POST CREATED");
   });
 });
+
+
+
 // OMAR YAKOUBI GET POSTS
 app.get("/getAllPosts", (req, res) => {
   Items.find({}, (err, result) => {
@@ -129,6 +153,16 @@ app.delete("/deleteUserById/:id", (req, res) => {
     }
   });
 });
+
+// ABDELLI HOUSSEM EDDINE GETTING ONE USER
+app.get("/one/:adressMail", (req, res) => {
+  Items.find({ adressMail: req.params.adressMail }).then((result) => {
+    res.send(result);
+  });
+});
+
+///SAVING THE IMAGE
+
 //INITIATE SEREVR
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

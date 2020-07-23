@@ -1,5 +1,5 @@
 import React from "react";
-import UserNavbar from "./UserNavbar.jsx";
+import SellAProduct from './SellAProduct.jsx'
 
 class UserInterface extends React.Component {
     constructor(props) {
@@ -9,7 +9,8 @@ class UserInterface extends React.Component {
     render() {
         return (
             <div>
-                <UserNavbar />
+                <SellAProduct />
+                {/* <MyProducts /> */}
             </div>
         );
     }

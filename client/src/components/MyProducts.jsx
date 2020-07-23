@@ -2,27 +2,27 @@ import React from "react";
 import axios from "axios";
 import UserPostList from "./UserPostList.jsx";
 import AdminNavbar from "./AdminNavbar.jsx";
-import UserAddPost from "./UserAddPost.jsx";
+import UserAddPost from "./SellAProduct.jsx";
 
-class UserNavbar extends React.Component {
+class MyProducts extends React.Component {
     constructor() {
         super()
+        this.state = {
+            allUsers: [],
+            arrayOfPosts: []
+        }
     }
 
-    // retriveUserPosts() {
-    //     console.log("you clicked");
-    //     axios
-    //         .get("/getAllPosts")
-    //         .then((resonse) => {
-    //             const data = resonse.data;
-    //             console.log("Get the data succefully.", data);
-    //             this.setState({ userPostsListArray: data });
-    //             console.log("state inside fetch", this.state);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    // }
+    retriveUserPosts(adressMail) {
+        axios.get(`one/${adressMail}`).then((allPosts) => {
+            let arrayOfAllPosts = allPosts.data
+            this.setState({
+                arrayOfPosts: arrayOfAllPosts
+            })
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
 
     render() {
         return (
@@ -43,15 +43,24 @@ class UserNavbar extends React.Component {
                         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div className="navbar-nav">
                                 <a className="nav-item nav-link active" href="#">Home <span className="sr-only"></span></a>
-                                <a className="nav-item nav-link" href="#">Post A Product</a>
-                                <a className="nav-item nav-link" href="#">Posts</a>
+                                <a className="nav-item nav-link" href="#">Sell a product</a>
+                                <a className="nav-item nav-link" href="#" onClick={this.retriveUserPosts.bind(this)}>My Products</a>
                             </div>
                         </div>
                     </nav>
                 </div>
+                {this.state.arrayOfPosts.map((post) => {
+                    return <div>
+                        {post.adressMail}
+                        {post.categories}
+                        {post.img}
+                        {post.description}
+                        {post.price}
+                    </div>
+                })}
             </div>
         );
     }
 }
 
-export default UserNavbar;
+export default MyProducts;
