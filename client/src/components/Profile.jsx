@@ -2,7 +2,6 @@ import React from "react";
 import jwt_decode from 'jwt-decode'
 import UserInterface from "./UserInterface.jsx";
 
-
 class Profile extends React.Component {
     constructor(props) {
         super(props)
@@ -11,7 +10,6 @@ class Profile extends React.Component {
             adressMail: ""
         }
     }
-
     componentDidMount() {
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
@@ -20,7 +18,6 @@ class Profile extends React.Component {
             adressMail: decoded.adressMail
         })
     }
-
     render() {
         return (
             <div>

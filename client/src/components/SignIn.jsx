@@ -13,7 +13,6 @@ class SignIn extends React.Component {
             isSigned: false
         }
     }
-
     renderAlert() {
         if (this.state.isSigned === true) {
             // return <h1> {this.state.alertMessage}</h1>
@@ -22,7 +21,6 @@ class SignIn extends React.Component {
             return <h1></h1>
         }
     }
-
     handleSignIn() {
         axios.post('http://localhost:3000/signIn', this.state).then(response => {
             localStorage.setItem("usertoken", response.data)
@@ -33,47 +31,24 @@ class SignIn extends React.Component {
             console.log(err)
         })
     }
-
     onChange(event) {
         this.setState({ [event.target.name]: event.target.value })
     }
-
     render() {
         return (
             <div>
-                <div>
-                    <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Email address</label>
-                        <input value={this.state.adressMail} onChange={this.onChange.bind(this)} name="adressMail" type="email" className="form-control" aria-describedby="emailHelp" />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="exampleInputPassword1">Password</label>
-                        <input value={this.state.password} type="password" className="form-control" name="password" onChange={this.onChange.bind(this)} />
-                    </div>
+                <form class="text-center border border-light p-5" action="#!">
+                    <p class="h4 mb-4">Sign in</p>
+                    <input onChange={this.onChange.bind(this)} name="adressMail" type="email" id="defaultLoginFormEmail" class="form-control mb-2" placeholder="E-mail" />
+                    <input onChange={this.onChange.bind(this)} name="password" type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" />
                     <Link to='/signin' >
-                        <button type="submit" className="btn btn-primary" onClick={this.handleSignIn.bind(this)}>Sign In</button>
+                        <button onClick={this.handleSignIn.bind(this)} class="btn btn-info btn-block my-4" type="submit">Sign in</button>
                     </Link>
-                </div>
+                </form>
             </div>
 
         );
     }
 }
-
-
 export default SignIn
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

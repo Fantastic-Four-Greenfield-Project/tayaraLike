@@ -48,5 +48,4 @@ class UserInterface extends React.Component {
         );
     }
 }
-
 export default UserInterface;
