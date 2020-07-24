@@ -1,18 +1,17 @@
 import React from "react";
 import axios from "axios";
 import { Link, withRouter } from 'react-router-dom'
+import logo from '../../../logo.png'
 
 class Landing extends React.Component {
     constructor(props) {
         super(props);
     }
-
     logOut(event) {
         event.preventDefault()
         localStorage.removeItem('usertoken')
         this.props.history.push('/')
     }
-
     render() {
         const userLogIn = (
             <div className="Navbar">
@@ -46,7 +45,6 @@ class Landing extends React.Component {
                 </nav>
             </div>
         )
-
         const userLogged = (
             <div className="Navbar">
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -61,7 +59,6 @@ class Landing extends React.Component {
                     >
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <br></br>
                     <div className="navbar-nav">
                         <Link to="/profile">
                             <a className="nav-item nav-link active" href="#">
@@ -77,7 +74,6 @@ class Landing extends React.Component {
                 </nav>
             </div>
         )
-
         return (
             <div className="Navbar">
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -92,11 +88,11 @@ class Landing extends React.Component {
                     >
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <br></br>
                     <div className="navbar-nav">
                         <Link to="/">
                             <a className="nav-item nav-link active" href="#">
-                                Home <span className="sr-only">(current)</span>
+                                {/* Home <span className="sr-only">(current)</span> */}
+                                <img src={logo} className="logo"></img>
                             </a>
                         </Link>
                         {localStorage.usertoken ? userLogged : userLogIn}
@@ -106,5 +102,4 @@ class Landing extends React.Component {
         )
     }
 }
-
 export default withRouter(Landing)

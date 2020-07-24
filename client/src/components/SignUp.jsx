@@ -25,42 +25,32 @@ class SignUp extends React.Component {
             if (response) {
                 this.props.history.push("/")
             }
+            // else {
+            //     // this.setState({ isSigned: !this.state.isSigned })
+            //     this.renderAlert()
+            // }
         }).catch(err => {
             console.log(err)
         })
     }
 
-    // renderAlert() {
-    //     if (this.state.isSigned === true) {
-    //         // return <h1> {this.state.alertMessage}</h1>
-    //         return <span className="modal-dialog modal-sm alertMessage">{this.state.alertMessage}</span>
-    //     } else if (this.state.isSigned === false) {
-    //         return <h1></h1>
-    //     }
-    // }
+    renderAlert() {
+        return "SOSOSO"
+    }
 
     render() {
         return (
-            <div>
-                <div>
-                    <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">User Name</label>
-                        <input value={this.state.userName} onChange={this.onChange.bind(this)} name="userName" type="email" className="form-control" aria-describedby="emailHelp" />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Email address</label>
-                        <input value={this.state.adressMail} onChange={this.onChange.bind(this)} name="adressMail" type="email" className="form-control" aria-describedby="emailHelp" />
-                        <small className="form-text text-muted">We'll never share your email with anyone else.</small>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="exampleInputPassword1">Password</label>
-                        <input value={this.state.password} onChange={this.onChange.bind(this)} name="password" type="password" className="form-control" />
-                    </div>
-                    <Link to="/signup">
-                        <button className="btn btn-info btn-lg button" data-toggle="modal" data-target="#myModal" type="submit" onClick={this.handleSignUp.bind(this)}>Sign Up</button>
+            < div >
+                <form class="text-center border border-light p-5" action="#!">
+                    <p class="h4 mb-4">Welcome to TayaraLike</p>
+                    <input id="defaultLoginFormPassword" class="form-control mb-4" placeholder="User Name" onChange={this.onChange.bind(this)} name="userName" />
+                    <input id="defaultLoginFormEmail" class="form-control mb-2" placeholder="E-mail" onChange={this.onChange.bind(this)} name="adressMail" />
+                    <input onChange={this.onChange.bind(this)} name="password" type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" />
+                    <Link to='/signup' >
+                        <button class="btn btn-info btn-block my-4" type="submit" onClick={this.handleSignUp.bind(this)}>Register</button>
                     </Link>
-                </div>
-            </div>
+                </form>
+            </div >
         );
     }
 
