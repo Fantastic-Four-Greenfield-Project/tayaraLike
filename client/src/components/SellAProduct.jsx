@@ -4,7 +4,6 @@ import axios from "axios";
 class SellAProduct extends React.Component {
     constructor() {
         super();
-
         this.state = {
             img: "",
             adressMail: "",
@@ -35,8 +34,6 @@ class SellAProduct extends React.Component {
         return (
             <form>
                 <div className="post-from">
-
-
                     <div className="custom-file">
                         <input
                             type="file"
@@ -47,8 +44,6 @@ class SellAProduct extends React.Component {
                         <label className="custom-file-label" htmlFor="inputGroupFile01">
                             Upload a picture of your product
             </label>
-
-
                         <div className="form-group">
                             <label htmlFor="formGroupExampleInput">Mail Adress</label>
                             <input
@@ -60,7 +55,6 @@ class SellAProduct extends React.Component {
                                 onChange={this.onChange.bind(this)}
                             />
                         </div>
-
                         <div className="form-group">
                             <label htmlFor="formGroupExampleInput">Categorie</label>
                             <input
@@ -72,11 +66,6 @@ class SellAProduct extends React.Component {
                                 onChange={this.onChange.bind(this)}
                             />
                         </div>
-
-
-
-
-
                         <div className="form-group">
                             <label htmlFor="formGroupExampleInput">Description</label>
                             <input
@@ -88,8 +77,6 @@ class SellAProduct extends React.Component {
                                 onChange={this.onChange.bind(this)}
                             />
                         </div>
-
-
 
 
                         <div className="form-group">

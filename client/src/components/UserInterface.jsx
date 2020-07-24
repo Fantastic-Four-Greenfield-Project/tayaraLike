@@ -1,11 +1,19 @@
 import React from "react";
+import ReactDOM from "react-dom"
 import SellAProduct from './SellAProduct.jsx'
+import MyProducts from './MyProducts.jsx'
 
 class UserInterface extends React.Component {
     constructor(props) {
         super(props);
     }
 
+    handleMyProducts() {
+        ReactDOM.render(<MyProducts />, document.getElementById('MyProducts'))
+    }
+    handleSellAproduct() {
+        ReactDOM.render(<SellAProduct />, document.getElementById('SellAProduct'))
+    }
     render() {
         return (
             <div>
@@ -24,54 +32,19 @@ class UserInterface extends React.Component {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div className="navbar-nav">
-                                <a className="nav-item nav-link" href="#">My Products</a>
+                                <a className="nav-item nav-link" href="#" onClick={this.handleMyProducts.bind(this)}>My Products</a>
                             </div>
                         </div>
                         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div className="navbar-nav">
-                                <a className="nav-item nav-link" href="#">Sell A product</a>
+                                <a className="nav-item nav-link" href="#" onClick={this.handleSellAproduct.bind(this)}>Sell A product</a>
                             </div>
                         </div>
                     </nav>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <SellAProduct />
-                {/* <MyProducts /> */}
-            </div>
+                <div id="MyProducts"></div>
+                <div id="SellAProduct"></div>
+            </div >
         );
     }
 }
