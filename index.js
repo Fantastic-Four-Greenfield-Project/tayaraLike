@@ -9,20 +9,31 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Items = require('./itemsSchema')
 // const fs = require('fs')
-// const multer = require('multer')
+const multer = require('multer')
+// const upload = multer({ dest: "uploads" })
+const storage = multer.diskStorage({
+  destination: function (req, file, callBack) {
+    callBack(null, './uploads')
+  },
+  filename: function (req, file, callBack) {
+    callBack(null, file.originalname)
+  }
+})
+const upload = multer({ storage: storage })
 // const path = require('path')
 // // require('dotenv/config')
 
 
-// // const storage = multer.diskStorage({
-// //   destination: function (req, file, cb) {
-// //     cb(null, './uploads')
-// //   },
-// //   filename: function (req, file, cb) {
-// //     cb(null, file.originalname)
-// //   }
-// // })
-// // const upload = multer({ storage: storage })
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, './uploads')
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, file.originalname)
+//   }
+// })
+
+
 
 process.env.SECRET_KEY = "secret"
 // // //set static folder to serve
@@ -30,12 +41,12 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("client/dist"));
-// app.use('/uploads', express.static("uploads"));
+app.use('/uploads', express.static("uploads"));
 // // //TEST CREATE AN ITEM
 
 app.post("/", (req, res) => {
   Items.create(req.body).then(item => {
-    res.send("item add")
+    res.send("item added")
   })
 })
 
@@ -116,12 +127,18 @@ app.post("/signIn", (req, res) => {
 
 // // //OMAR YAKOUBI TO CREATE A PRODUCT USING ITEM SCHEMA
 // // // , upload.single('img')
-app.post("/createUsersPosts", (req, res) => {
-  Items.create(req.body).then((user) => {
-    res.send(user);
+app.post("/createUsersPosts", upload.single('img'), (req, res) => {
+  let newItem = {
+    adressMail: req.body.adressMail,
+    categories: req.body.categories,
+    img: req.file.filename,
+    description: req.body.description,
+    price: req.body.price
+  }
+  Items.create(newItem).then((item) => {
+    res.send(item);
   });
 });
-
 
 
 // // // OMAR YAKOUBI GET POSTS

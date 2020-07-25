@@ -15,22 +15,25 @@ class Landing extends React.Component {
     }
 
     render() {
+
         return (
-            
-            <div>
-                {this.state.inside.map((element, index) => {
-                    return (
-                        <div key={index} className="card mb-3" >
-                            <div className="card-body">
-                                <h4 className="card-title"> Categorie : {element.categories}</h4>
-                                <h5 className="card-title">Price : {element.price}</h5>
-                                <p className="card-text">Description : {element.description}</p>
-                                <a href="#" className="btn btn-primary">Posted By : {element.adressMail}</a>
+            < div >
+                {
+                    this.state.inside.map((element, index) => {
+                        return (
+                            <div key={index} className="card mb-3" >
+                                <div className="card-body">
+                                    <h4 className="card-title"> Categorie : {element.categories}</h4>
+                                    <img src={`http://localhost:3000/uploads/${element.img}`} class="img-fluid z-depth-1 rounded-circle" alt="Responsive image"></img>
+                                    <h5 className="card-title">Price : {element.price}</h5>
+                                    <p className="card-text">Description : {element.description}</p>
+                                    <a href="#" className="btn btn-primary">Posted By : {element.adressMail}</a>
+                                </div>
                             </div>
-                        </div>
-                    );
-                })}
-            </div>
+                        );
+                    })
+                }
+            </div >
         );
     }
 }

@@ -31,13 +31,14 @@ class SellAProduct extends React.Component {
         })
     }
     render() {
+        console.log(this.state)
         return (
             <form class="text-center border border-light p-5" action="#!">
                 <p class="h4 mb-4">Please Fill All The Inputs</p>
                 <div class="input-group">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="inputGroupFile01"
-                            aria-describedby="inputGroupFileAddon01" />
+                            aria-describedby="inputGroupFileAddon01" onChange={this.onChange.bind(this)} name="img" />
                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                     </div>
                 </div>
