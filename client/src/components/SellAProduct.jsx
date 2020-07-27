@@ -1,12 +1,13 @@
 import React from "react";
 import axios from "axios";
 import { link } from 'react-router-dom'
+// import ImageUploader from 'react-images-upload'
 
 class SellAProduct extends React.Component {
     constructor() {
         super();
         this.state = {
-            img: "",
+            profileImg: "",
             adressMail: "",
             categories: "",
             description: "",
@@ -15,8 +16,24 @@ class SellAProduct extends React.Component {
         }
     }
 
+    onSubmit(e) {
+        e.preventDefault()
+        const formData = new FormData()
+        formData.append('profileImg', this.state.profileImg)
+        axios.post("/createImage", formData, {
+        }).then(res => {
+            console.log(res)
+        })
+    }
+
+    onFileChange(e) {
+        this.setState({
+            profileImg: e.target.files[0]
+        })
+    }
 
     onChange(event) {
+        event.preventDefault()
         this.setState({
             [event.target.name]: event.target.value
         })
@@ -32,31 +49,30 @@ class SellAProduct extends React.Component {
     }
     render() {
         return (
-            <form class="text-center border border-light p-5" action="#!">
-                <p class="h4 mb-4">Please Fill All The Inputs</p>
-                <div class="input-group">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile01"
-                            aria-describedby="inputGroupFileAddon01" />
-                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+
+
+            <div>
+                <div className="container">
+                    <div className="row">
+                        <form onSubmit={this.onSubmit.bind(this)}>
+                            <div className="form-group">
+                                <input type="file" onChange={this.onFileChange.bind(this)} />
+                            </div>
+                            <div className="form-group">
+                                <button className="btn btn-primary" type="submit">Upload</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <br></br>
                 <input onChange={this.onChange.bind(this)} name="adressMail" type="email" id="defaultLoginFormEmail" class="form-control mb-2" placeholder="E-mail" />
-                <br></br>
-                <label for="exampleForm2">Categorie</label>
                 <input onChange={this.onChange.bind(this)} name="categories" type="text" id="exampleForm2" class="form-control" />
-                <br></br>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea3">Description</label>
-                    <textarea onChange={this.onChange.bind(this)} name="description" class="form-control" id="exampleFormControlTextarea3" rows="7"></textarea>
-                </div>
-                <br></br>
+                <textarea onChange={this.onChange.bind(this)} name="description" class="form-control" id="exampleFormControlTextarea3" rows="7"></textarea>
                 <input onChange={this.onChange.bind(this)} name="price" class="form-control form-control-sm" type="text" placeholder="Price in Tunisian Dinars" />
-                <br></br>
-                <button onClick={this.createAproduct.bind(this)} class="btn btn-info btn-block my-4" type="submit">Validate</button>
-                {/* {this.alertM()} */}
-            </form >
+                <button onClick={this.createAproduct.bind(this)} type="button" className="btn btn-success">
+                    Submit you product to sell
+          </button>
+            </div>
+
         );
     }
 }
