@@ -33,7 +33,8 @@ class Landing extends React.Component {
                                 {this.state.image.map((image, i) => {
                                     return <img src={image.profileImg}></img>
                                 })}
-                                <h5 className="card-title">Price : {element.price}</h5>
+                                <h5 className="card-title">Price : {element.price} TDN</h5>
+
                                 <p className="card-text">Description : {element.description}</p>
                                 <a href="#" className="btn btn-primary">Posted By : {element.adressMail}</a>
                             </div>

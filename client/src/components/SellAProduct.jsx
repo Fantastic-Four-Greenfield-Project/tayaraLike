@@ -49,28 +49,70 @@ class SellAProduct extends React.Component {
     }
     render() {
         return (
-
-
-            <div>
-                <div className="container">
-                    <div className="row">
-                        <form onSubmit={this.onSubmit.bind(this)}>
-                            <div className="form-group">
-                                <input type="file" onChange={this.onFileChange.bind(this)} />
-                            </div>
-                            <div className="form-group">
-                                <button className="btn btn-primary" type="submit">Upload</button>
-                            </div>
-                        </form>
+                <div>
+                    <div className="custom-file">
+                        <div className="row" >
+                            <form onSubmit={this.onSubmit.bind(this)}>
+                                <div className="form-group">
+                                    <input type="file" onChange={this.onFileChange.bind(this)} />
+                                </div>
+                                <div className="form-group">
+                                    <button className="btn btn-primary" type="submit">Upload</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
-                <input onChange={this.onChange.bind(this)} name="adressMail" type="email" id="defaultLoginFormEmail" class="form-control mb-2" placeholder="E-mail" />
-                <input onChange={this.onChange.bind(this)} name="categories" type="text" id="exampleForm2" class="form-control" />
-                <textarea onChange={this.onChange.bind(this)} name="description" class="form-control" id="exampleFormControlTextarea3" rows="7"></textarea>
-                <input onChange={this.onChange.bind(this)} name="price" class="form-control form-control-sm" type="text" placeholder="Price in Tunisian Dinars" />
-                <button onClick={this.createAproduct.bind(this)} type="button" className="btn btn-success">
-                    Submit you product to sell
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <div className="form-group">
+                        <label htmlFor="formGroupExampleInput">Mail Adress</label>
+                        <input
+                            name="adressMail"
+                            type="text"
+                            className="form-control"
+                            id="formGroupExampleInput"
+                            placeholder="Write your adress Mail here"
+
+                            onChange={this.onChange.bind(this)}
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="formGroupExampleInput">Categorie</label>
+                        <input
+                            name="categories"
+                            type="text"
+                            className="form-control"
+                            id="formGroupExampleInput"
+                            placeholder="Write the categorie of the product here"
+                            onChange={this.onChange.bind(this)}
+                        />
+                    </div>
+
+
+                    <textarea onChange={this.onChange.bind(this)} name="description" class="form-control" id="exampleFormControlTextarea3" rows="7"></textarea>
+
+
+                    <div className="form-group">
+                        <label htmlFor="formGroupExampleInput">Price</label>
+                        <input
+                            name="price"
+                            type="text"
+                            className="form-control"
+                            id="formGroupExampleInput"
+                            placeholder="Write your price here"
+                            onChange={this.onChange.bind(this)}
+                        />
+                    </div>
+
+
+                    <button onClick={this.createAproduct.bind(this)} type="button" className="btn btn-success">
+                        Submit you product to sell
           </button>
+                </div>
+   
             </div>
 
         );

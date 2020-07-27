@@ -5,7 +5,7 @@ import MyProducts from './MyProducts.jsx'
 
 class UserInterface extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
     }
 
     handleMyProducts() {

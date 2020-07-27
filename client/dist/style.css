@@ -66,3 +66,9 @@
   width: 200px;
   height : 200px;
 }
+
+
+.rounded-circle {
+  border-radius: 50%!important;
+  max-width: 180px;
+}
