@@ -49,70 +49,68 @@ class SellAProduct extends React.Component {
     }
     render() {
         return (
-                <div>
-                    <div className="custom-file">
-                        <div className="row" >
-                            <form onSubmit={this.onSubmit.bind(this)}>
-                                <div className="form-group">
-                                    <input type="file" onChange={this.onFileChange.bind(this)} />
-                                </div>
-                                <div className="form-group">
-                                    <button className="btn btn-primary" type="submit">Upload</button>
-                                </div>
-                            </form>
-                        </div>
+            <div>
+                <div className="custom-file">
+                    <div className="row" >
+                        <form onSubmit={this.onSubmit.bind(this)}>
+                            <div className="form-group">
+                                <input type="file" onChange={this.onFileChange.bind(this)} />
+                            </div>
+                            <div className="form-group">
+                                <button className="btn btn-primary" type="submit">Upload</button>
+                            </div>
+                        </form>
                     </div>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <div className="form-group">
-                        <label htmlFor="formGroupExampleInput">Mail Adress</label>
-                        <input
-                            name="adressMail"
-                            type="text"
-                            className="form-control"
-                            id="formGroupExampleInput"
-                            placeholder="Write your adress Mail here"
-
-                            onChange={this.onChange.bind(this)}
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="formGroupExampleInput">Categorie</label>
-                        <input
-                            name="categories"
-                            type="text"
-                            className="form-control"
-                            id="formGroupExampleInput"
-                            placeholder="Write the categorie of the product here"
-                            onChange={this.onChange.bind(this)}
-                        />
-                    </div>
-
-
-                    <textarea onChange={this.onChange.bind(this)} name="description" class="form-control" id="exampleFormControlTextarea3" rows="7"></textarea>
-
-
-                    <div className="form-group">
-                        <label htmlFor="formGroupExampleInput">Price</label>
-                        <input
-                            name="price"
-                            type="text"
-                            className="form-control"
-                            id="formGroupExampleInput"
-                            placeholder="Write your price here"
-                            onChange={this.onChange.bind(this)}
-                        />
-                    </div>
-
-
-                    <button onClick={this.createAproduct.bind(this)} type="button" className="btn btn-success">
-                        Submit you product to sell
-          </button>
                 </div>
-   
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <div className="form-group">
+                    <label htmlFor="formGroupExampleInput">Mail Adress</label>
+                    <input
+                        name="adressMail"
+                        type="text"
+                        className="form-control"
+                        id="formGroupExampleInput"
+                        placeholder="Write your adress Mail here"
+
+                        onChange={this.onChange.bind(this)}
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="formGroupExampleInput">Categorie</label>
+                    <input
+                        name="categories"
+                        type="text"
+                        className="form-control"
+                        id="formGroupExampleInput"
+                        placeholder="Write the categorie of the product here"
+                        onChange={this.onChange.bind(this)}
+                    />
+                </div>
+
+
+                <textarea onChange={this.onChange.bind(this)} name="description" class="form-control" id="exampleFormControlTextarea3" rows="7"></textarea>
+
+
+                <div className="form-group">
+                    <label htmlFor="formGroupExampleInput">Price</label>
+                    <input
+                        name="price"
+                        type="text"
+                        className="form-control"
+                        id="formGroupExampleInput"
+                        placeholder="Write your price here"
+                        onChange={this.onChange.bind(this)}
+                    />
+                </div>
+
+
+                <button onClick={this.createAproduct.bind(this)} type="button" className="btn btn-success">
+                    Submit you product to sell
+          </button>
             </div>
 
         );
