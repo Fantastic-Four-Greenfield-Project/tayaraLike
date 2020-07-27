@@ -49,8 +49,6 @@ class SellAProduct extends React.Component {
     }
     render() {
         return (
-
-     
                 <div>
                     <div className="custom-file">
                         <div className="row" >
@@ -81,8 +79,6 @@ class SellAProduct extends React.Component {
                         />
                     </div>
 
-                    {/* <input onChange={this.onChange.bind(this)} name="adressMail" type="email" id="defaultLoginFormEmail" class="form-control mb-2" placeholder="E-mail" /> */}
-
                     <div className="form-group">
                         <label htmlFor="formGroupExampleInput">Categorie</label>
                         <input
@@ -96,9 +92,6 @@ class SellAProduct extends React.Component {
                     </div>
 
 
-
-
-                    {/* <input onChange={this.onChange.bind(this)} name="categories" type="text" id="exampleForm2" class="form-control" /> */}
                     <textarea onChange={this.onChange.bind(this)} name="description" class="form-control" id="exampleFormControlTextarea3" rows="7"></textarea>
 
 
@@ -115,13 +108,13 @@ class SellAProduct extends React.Component {
                     </div>
 
 
-
-                    {/* <input onChange={this.onChange.bind(this)} name="price" class="form-control form-control-sm" type="text" placeholder="Price in Tunisian Dinars" /> */}
                     <button onClick={this.createAproduct.bind(this)} type="button" className="btn btn-success">
                         Submit you product to sell
           </button>
                 </div>
    
+            </div>
+
         );
     }
 }

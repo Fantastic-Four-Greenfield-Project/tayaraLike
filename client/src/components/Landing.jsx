@@ -14,12 +14,13 @@ class Landing extends React.Component {
             this.setState({ inside: data.data });
         });
         axios.get('/oneImage').then((res) => {
-            console.log(res)
             this.setState({
                 image: res.data
             })
         })
     }
+
+
 
     render() {
         return (
@@ -33,6 +34,7 @@ class Landing extends React.Component {
                                     return <img src={image.profileImg}></img>
                                 })}
                                 <h5 className="card-title">Price : {element.price} TDN</h5>
+
                                 <p className="card-text">Description : {element.description}</p>
                                 <a href="#" className="btn btn-primary">Posted By : {element.adressMail}</a>
                             </div>
