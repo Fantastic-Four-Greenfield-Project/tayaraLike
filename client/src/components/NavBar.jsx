@@ -42,6 +42,13 @@ class Landing extends React.Component {
                             </a>
                         </Link>
                     </div>
+                    <div className="navbar-nav">
+                        <Link to="/signUp">
+                            <a className="nav-item nav-link active" href="#">
+                                Log In As An Admin <span className="sr-only">(current)</span>
+                            </a>
+                        </Link>
+                    </div>
                 </nav>
             </div>
         )

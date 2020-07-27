@@ -5,35 +5,41 @@ class Landing extends React.Component {
     constructor(props) {
         super(props)
         this.state = ({
-            inside: []
+            inside: [],
+            image: []
         })
     }
     componentWillMount() {
         axios.get("/post").then((data) => {
             this.setState({ inside: data.data });
         });
+        axios.get('/oneImage').then((res) => {
+            console.log(res)
+            this.setState({
+                image: res.data
+            })
+        })
     }
 
     render() {
-
         return (
-            < div >
-                {
-                    this.state.inside.map((element, index) => {
-                        return (
-                            <div key={index} className="card mb-3" >
-                                <div className="card-body">
-                                    <h4 className="card-title"> Categorie : {element.categories}</h4>
-                                    <img src={`http://localhost:3000/uploads/${element.img}`} class="img-fluid z-depth-1 rounded-circle" alt="Responsive image"></img>
-                                    <h5 className="card-title">Price : {element.price}</h5>
-                                    <p className="card-text">Description : {element.description}</p>
-                                    <a href="#" className="btn btn-primary">Posted By : {element.adressMail}</a>
-                                </div>
+            <div>
+                {this.state.inside.map((element, index) => {
+                    return (
+                        <div key={index} className="card mb-3" >
+                            <div className="card-body">
+                                <h4 className="card-title"> Categorie : {element.categories}</h4>
+                                {this.state.image.map((image, i) => {
+                                    return <img src={image.profileImg}></img>
+                                })}
+                                <h5 className="card-title">Price : {element.price} TDN</h5>
+                                <p className="card-text">Description : {element.description}</p>
+                                <a href="#" className="btn btn-primary">Posted By : {element.adressMail}</a>
                             </div>
-                        );
-                    })
-                }
-            </div >
+                        </div>
+                    );
+                })}
+            </div>
         );
     }
 }

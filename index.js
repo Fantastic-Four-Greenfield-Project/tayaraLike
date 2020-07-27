@@ -8,32 +8,29 @@ const db = require("./databse.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Items = require('./itemsSchema')
-// const fs = require('fs')
 const multer = require('multer')
-// const upload = multer({ dest: "uploads" })
-const storage = multer.diskStorage({
-  destination: function (req, file, callBack) {
-    callBack(null, './uploads')
-  },
-  filename: function (req, file, callBack) {
-    callBack(null, file.originalname)
-  }
-})
-const upload = multer({ storage: storage })
+const DIR = './uploads/'
+const cors = require('cors')
+const Image = require("./imageSchema")
+// const fs = require('fs')
+// const multer = require('multer')
 // const path = require('path')
 // // require('dotenv/config')
 
 
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, './uploads')
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, file.originalname)
-//   }
-// })
+
+// create item data
 
 
+// // const storage = multer.diskStorage({
+// //   destination: function (req, file, cb) {
+// //     cb(null, './uploads')
+// //   },
+// //   filename: function (req, file, cb) {
+// //     cb(null, file.originalname)
+// //   }
+// // })
+// // const upload = multer({ storage: storage })
 
 process.env.SECRET_KEY = "secret"
 // // //set static folder to serve
@@ -41,15 +38,21 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("client/dist"));
-app.use('/uploads', express.static("uploads"));
+app.use('/uploads', express.static('uploads'));
+app.use(cors())
+// app.use('/uploads', express.static("uploads"));
 // // //TEST CREATE AN ITEM
 
 app.post("/", (req, res) => {
   Items.create(req.body).then(item => {
-    res.send("item added")
+    res.send("item add")
   })
 })
-
+app.post("/createUsersPosts", (req, res,) => {
+  Items.create(req.body).then((user) => {
+    res.send(user);
+  });
+});
 
 // // // app.get("/*", function (req, res) {
 // // //   res.sendFile(
@@ -127,18 +130,9 @@ app.post("/signIn", (req, res) => {
 
 // // //OMAR YAKOUBI TO CREATE A PRODUCT USING ITEM SCHEMA
 // // // , upload.single('img')
-app.post("/createUsersPosts", upload.single('img'), (req, res) => {
-  let newItem = {
-    adressMail: req.body.adressMail,
-    categories: req.body.categories,
-    img: req.file.filename,
-    description: req.body.description,
-    price: req.body.price
-  }
-  Items.create(newItem).then((item) => {
-    res.send(item);
-  });
-});
+
+
+
 
 
 // // // OMAR YAKOUBI GET POSTS
@@ -192,7 +186,44 @@ app.post("/createUsersPosts", upload.single('img'), (req, res) => {
 // //     res.send(result);
 // //   });
 // // });
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, DIR);
+  },
+  filename: (req, file, cb) => {
+    const fileName = file.originalname.toLowerCase().split(' ').join('-');
+    cb(null, '-' + fileName)
+  }
+})
 
+var upload = multer({
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+    }
+  }
+})
+
+
+app.post("/createImage", upload.single('profileImg'), (req, res, next) => {
+  const url = req.protocol + '://' + req.get('host')
+  const user = {
+    profileImg: url + '/uploads/' + req.file.filename
+  }
+  Image.create(user).then((users) => {
+    res.send(users);
+  });
+});
+
+app.get('/oneImage', (req, res) => {
+  Image.find({}, (err, docs) => {
+    res.send(docs)
+  });
+})
 //INITIATE SEREVR
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
